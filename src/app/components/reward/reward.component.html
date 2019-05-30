@@ -1,0 +1,77 @@
+<div class="page-container">
+    <div class="one-quarter-page">
+        <h1 class="headline center">Customer Rewards</h1>
+        <div class="center">
+            <button mat-raised-button color="primary" (click)="generateCustomerData(90)" class="center">Generate New Customer Purchase Data</button>
+        </div>
+        <div class="customer-div mat-elevation-z2">
+        <p class="mat-body-1 center"> Customer List </p>
+        <mat-divider [inset]="true"></mat-divider>
+        <mat-list>
+            <mat-list-item *ngFor="let customer of customerList">
+                <button mat-button (click)="changeCustomer(customer.customerID)"> Customer {{customer.customerID}} </button>
+            </mat-list-item>
+        </mat-list>
+        </div>
+    </div>
+    <div class="two-quarter-page">
+        <p class="mat-headline center"> Customer {{currentCustomerID}} </p>
+        <div class="table-div">
+        <table mat-table [dataSource]="purchaseTableData">
+            <ng-container matColumnDef="purchaseDateString">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let purchase"> {{purchase.purchaseDateString}} </td>
+                <td mat-footer-cell *matFooterCellDef>Total ({{purchaseCount}})</td>
+            </ng-container>
+            <ng-container matColumnDef="purchaseAmount">
+                <th mat-header-cell *matHeaderCellDef> Purchase Amount </th>
+                <td mat-cell *matCellDef="let purchase"> ${{purchase.purchaseAmount}} </td>
+                <td mat-footer-cell *matFooterCellDef>${{tableTotalPurchases}}</td>
+            </ng-container>
+            <ng-container matColumnDef="purchaseRewardPoints">
+                <th mat-header-cell *matHeaderCellDef> Reward Points </th>
+                <td mat-cell *matCellDef="let purchase"> {{purchase.purchaseRewardPoints}} </td>
+                <td mat-footer-cell *matFooterCellDef>{{tableTotalPoints}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="purchaseTableDisplay; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; let i = index; columns: purchaseTableDisplay;"></tr>
+            <tr mat-footer-row *matFooterRowDef="purchaseTableDisplay; sticky: true"></tr>
+        </table>
+        </div>
+    </div>
+    <div class="one-quarter-page">
+        <p class="mat-headline center">Summary</p>
+        <div class="button-row">
+            <button mat-stroked-button (click)="singleCustomerSummary()">Customer {{currentCustomerID}}</button>
+            <button mat-stroked-button (click)="allCustomersSummary()" color="primary">All Customers </button>
+        </div>
+        <div [hidden]="allCustomers">
+            <p class="mat-body-2 center"> Present - 30 Days Ago</p>
+            <p class="mat-body-1 text-left-margin"><strong>Amount Spent: </strong>$ {{singleThirtyPurchases}}</p>
+            <p class="mat-body-1 text-left-margin"><strong>Points: </strong>{{singleThirtyPoints}}</p>
+            <mat-divider [inset]="true"></mat-divider>
+            <p class="mat-body-2 center"> 31 - 60 Days Ago</p>
+            <p class="mat-body-1 text-left-margin"><strong>Amount Spent: </strong>$ {{singleSixtyPurchases}}</p>
+            <p class="mat-body-1 text-left-margin"><strong>Points: </strong>{{singleSixtyPoints}}</p>
+            <mat-divider [inset]="true"></mat-divider>
+            <p class="mat-body-2 center"> 61 - 90 Days Ago</p>
+            <p class="mat-body-1 text-left-margin"><strong>Amount Spent: </strong>$ {{singleNinetyPurchases}}</p>
+            <p class="mat-body-1 text-left-margin"><strong>Points: </strong>{{singleNinetyPoints}}</p>
+            <mat-divider [inset]="true"></mat-divider>
+        </div>
+        <div [hidden]="!allCustomers">
+            <p class="mat-body-2 center"> Present - 30 Days Ago</p>
+            <p class="mat-body-1 text-left-margin"><strong>Amount Spent: </strong>$ {{allThirtyPurchases}}</p>
+            <p class="mat-body-1 text-left-margin"><strong>Points: </strong>{{allThirtyPoints}}</p>
+            <mat-divider [inset]="true"></mat-divider>
+            <p class="mat-body-2 center"> 31 - 60 Days Ago</p>
+            <p class="mat-body-1 text-left-margin"><strong>Amount Spent: </strong>$ {{allSixtyPurchases}}</p>
+            <p class="mat-body-1 text-left-margin"><strong>Points: </strong>{{allSixtyPoints}}</p>
+            <mat-divider [inset]="true"></mat-divider>
+            <p class="mat-body-2 center"> 61 - 90 Days Ago</p>
+            <p class="mat-body-1 text-left-margin"><strong>Amount Spent: </strong>$ {{allNinetyPurchases}}</p>
+            <p class="mat-body-1 text-left-margin"><strong>Points: </strong>{{allNinetyPoints}}</p>
+            <mat-divider [inset]="true"></mat-divider>
+        </div>
+    </div>
+</div>
