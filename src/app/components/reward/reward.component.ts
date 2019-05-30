@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
 import { CustomerService } from 'src/app/services/customer.service';
 import { MatTableDataSource } from '@angular/material';
 import { ICustomer } from 'src/app/interfaces/purchase.type';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-reward',
@@ -36,6 +36,8 @@ export class RewardComponent implements OnInit {
   allSixtyPoints: number;
   allNinetyPurchases: any;
   allNinetyPoints: number;
+  allTotalPurchases: any;
+  allTotalPoints: number;
 
   constructor(private customerService: CustomerService) { }
 
@@ -218,6 +220,8 @@ export class RewardComponent implements OnInit {
         }
       }
     }
+    this.allTotalPurchases = this.allThirtyPurchases + this.allSixtyPurchases + this.allNinetyPurchases;
+    this.allTotalPoints = this.allThirtyPoints + this.allSixtyPoints + this.allNinetyPoints;
     this.formatSummary('all');
   }
 
@@ -237,6 +241,8 @@ export class RewardComponent implements OnInit {
         this.allSixtyPoints = 0;
         this.allNinetyPurchases = 0;
         this.allNinetyPoints = 0;
+        this.allTotalPurchases = 0;
+        this.allTotalPoints = 0;
     }
   }
 
@@ -250,6 +256,7 @@ export class RewardComponent implements OnInit {
         this.allThirtyPurchases = Number(this.allThirtyPurchases).toFixed(2);
         this.allSixtyPurchases = Number(this.allSixtyPurchases).toFixed(2);
         this.allNinetyPurchases = Number(this.allNinetyPurchases).toFixed(2);
+        this.allTotalPurchases = Number(this.allTotalPurchases).toFixed(2);
     }
   }
 
