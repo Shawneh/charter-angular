@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer.service';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatSort } from '@angular/material';
 import { ICustomer } from 'src/app/interfaces/purchase.type';
 import * as moment from 'moment';
 
@@ -10,6 +10,7 @@ import * as moment from 'moment';
   styleUrls: ['./reward.component.scss']
 })
 export class RewardComponent implements OnInit {
+  @ViewChild('purchaseSort', { static: true }) purchaseSort: MatSort;
 
   customerList: ICustomer[];
   currentCustomerID: number;
@@ -50,6 +51,8 @@ export class RewardComponent implements OnInit {
 
     // Begin with one customer
     this.generateCustomerData(90);
+
+    this.purchaseTableData.sort = this.purchaseSort;
   }
 
   generateCustomerData(numberOfDays) {

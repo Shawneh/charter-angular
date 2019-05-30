@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { MatTableModule } from '@angular/material/table';
         MatButtonModule,
         MatDividerModule,
         MatListModule,
+        MatSortModule,
         MatSelectModule,
         MatTableModule
     ],
@@ -20,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
         MatButtonModule,
         MatDividerModule,
         MatListModule,
+        MatSortModule,
         MatSelectModule,
         MatTableModule
     ]

@@ -17,19 +17,19 @@
     <div class="two-quarter-page">
         <p class="mat-headline center"> Customer {{currentCustomerID}} </p>
         <div class="table-div">
-        <table mat-table [dataSource]="purchaseTableData">
+        <table mat-table #purchaseSort="matSort" matSort [dataSource]="purchaseTableData">
             <ng-container matColumnDef="purchaseDateString">
-                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
                 <td mat-cell *matCellDef="let purchase"> {{purchase.purchaseDateString}} </td>
                 <td mat-footer-cell *matFooterCellDef>Total ({{purchaseCount}})</td>
             </ng-container>
             <ng-container matColumnDef="purchaseAmount">
-                <th mat-header-cell *matHeaderCellDef> Purchase Amount </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Purchase Amount </th>
                 <td mat-cell *matCellDef="let purchase"> ${{purchase.purchaseAmount}} </td>
                 <td mat-footer-cell *matFooterCellDef>${{tableTotalPurchases}}</td>
             </ng-container>
             <ng-container matColumnDef="purchaseRewardPoints">
-                <th mat-header-cell *matHeaderCellDef> Reward Points </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Reward Points </th>
                 <td mat-cell *matCellDef="let purchase"> {{purchase.purchaseRewardPoints}} </td>
                 <td mat-footer-cell *matFooterCellDef>{{tableTotalPoints}}</td>
             </ng-container>
